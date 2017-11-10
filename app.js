@@ -41,7 +41,11 @@ app.use(bodyParser.json());
 app.use('/users', users);
 
 // Index Route
-app.get('/', (req, res) => res.send('Invalid Endpoint'));
+app.get('/', (req, res) => {
+  res.send('Invalid Endpoint');
+});
 
 // Start Server
-app.listen(port, () => console.log('server startet on port '+ port));
+app.listen(port, () => {
+   console.log('server startet on port '+ port);
+});
