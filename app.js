@@ -10,6 +10,10 @@ const users = require('./routes/users');
 
 const app = express();
 
+// Mongoose promise libary
+// mongoose.Promise = global.Promise;
+mongoose.Promise = require('bluebird');
+
 // Connect To Database
 mongoose.connect(config.database, {
   useMongoClient: true
@@ -38,5 +42,5 @@ app.use('/users', users);
 
 // Start Server
 app.listen(3000, () => {
-   console.log('server startet on port '+ 3000);
+   console.log('server startet on port ' + 3000);
 });
