@@ -4,7 +4,7 @@
   "description": "refreshing my nodejs skillset",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "mocha",
     "start": "node app"
   },
   "dependencies": {
@@ -15,7 +15,9 @@
     "jsonwebtoken": "*",
     "body-parser": "*",
     "passport": "*",
-    "passport-jwt": "*"
+    "passport-jwt": "*",
+    "mocha": "*",
+    "chai": "*"
   },
   "author": "Anders Kaae",
   "license": "ISC"
