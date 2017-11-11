@@ -1,5 +1,5 @@
 {
-  "name": "learnnode",
+  "name": "nodeAuthTest",
   "version": "1.0.0",
   "description": "node auth and testing app",
   "main": "app.js",
