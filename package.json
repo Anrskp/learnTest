@@ -1,7 +1,7 @@
 {
   "name": "learnnode",
   "version": "1.0.0",
-  "description": "refreshing my nodejs skillset",
+  "description": "node auth and testing app",
   "main": "app.js",
   "scripts": {
     "test": "mocha",

@@ -11,7 +11,6 @@ const users = require('./routes/users');
 const app = express();
 
 // Mongoose promise libary
-// mongoose.Promise = global.Promise;
 mongoose.Promise = require('bluebird');
 
 // Connect To Database
@@ -38,7 +37,6 @@ app.use(bodyParser.json());
 // Passport Middleware
 app.use(passport.initialize());
 app.use(passport.session());
-
 require('./config/passport')(passport);
 
 // Set Static Folder
