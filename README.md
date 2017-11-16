@@ -1,9 +1,13 @@
 # nodeTest
 
-MEAN stack social media for software testing and cryptography
+MEAN stack social network app for software testing and cryptography
 
 
 * Anders Kaae Pedersen
 * Igor
 * Ogyun
 * Stan 
+
+#Software testing:
+
+#Cryptography:
