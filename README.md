@@ -8,6 +8,6 @@ MEAN stack social network app for software testing and cryptography
 * Ogyun
 * Stan 
 
-#Software testing:
+# Software testing:
 
-#Cryptography:
+# Cryptography:
