@@ -2,7 +2,8 @@
 
 MEAN stack social media for software testing and cryptography
 
-* Anders Kaae Pedersen @Anrskp 
+
+* Anders Kaae Pedersen
 * Igor
 * Ogyun
 * Stan 
