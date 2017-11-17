@@ -1,0 +1,24 @@
+{
+  "name": "nodeAuthTest",
+  "version": "1.0.0",
+  "description": "node auth and testing app",
+  "main": "app.js",
+  "scripts": {
+    "test": "mocha",
+    "start": "node app"
+  },
+  "dependencies": {
+    "express": "*",
+    "mongoose": "*",
+    "bcryptjs": "*",
+    "cors": "*",
+    "jsonwebtoken": "*",
+    "body-parser": "*",
+    "passport": "*",
+    "passport-jwt": "*",
+    "mocha": "*",
+    "chai": "*"
+  },
+  "author": "Anders Kaae",
+  "license": "ISC"
+}
