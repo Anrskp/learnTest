@@ -1,13 +1,20 @@
-# nodeTest
+# MEAN stack social network application
 
-MEAN stack social network app for software testing and cryptography
+short disc.
 
-
-* Anders Kaae Pedersen
-* Igor
-* Ogyun
-* Stan 
 
 # Software testing:
 
+Group members :
+
+* Anders Kaae Pedersen
+* Igor Akoulinine
+* Ogyun Dzhambazov
+
 # Cryptography:
+
+Group members :
+
+* Anders Kaae Pedersen
+* Ogyun Dzhambazov
+* Stan

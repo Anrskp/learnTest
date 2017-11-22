@@ -4,7 +4,7 @@
   "description": "node auth and testing app",
   "main": "app.js",
   "scripts": {
-    "test": "mocha",
+    "test": "mocha --exit",
     "start": "node app"
   },
   "dependencies": {
@@ -17,7 +17,8 @@
     "passport": "*",
     "passport-jwt": "*",
     "mocha": "*",
-    "chai": "*"
+    "chai": "*",
+    "chai-http":"*"
   },
   "author": "Anders Kaae",
   "license": "ISC"

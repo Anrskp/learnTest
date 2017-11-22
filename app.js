@@ -10,7 +10,7 @@ const users = require('./routes/users');
 
 const app = express();
 
-// Mongoose promise libary
+// Promise libary
 mongoose.Promise = require('bluebird');
 
 // Connect To Database
@@ -20,7 +20,7 @@ mongoose.connect(config.database, {
 
 // On Connection
 mongoose.connection.on('connected', () => {
-  console.log('Connected to database ' + config.database)
+  // console.log('Connected to database ' + config.database)
 });
 
 // On Error
@@ -49,3 +49,5 @@ const port = 3000;
 app.listen(port, () => {
    console.log('Server startet on port ' + port);
 });
+
+module.exports = app; // for testing
