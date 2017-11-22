@@ -1,3 +1,5 @@
+/*
+
 'use strict';
 
 const chai = require('chai');
@@ -13,7 +15,7 @@ var testUser = {
   password : "test"
 };
 
-describe('users tests', function() {
+describe('User http routes', function() {
 
   it('Should add a new user to the database', () => {
     return chai.request(app)
@@ -26,3 +28,4 @@ describe('users tests', function() {
       });
   });
 });
+*/
