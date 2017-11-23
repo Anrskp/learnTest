@@ -1,10 +1,9 @@
-//'use strict';
-const config = require('../config/database')
+'use strict'
+
 const User = require('../models/user');
 const chai = require('chai');
 const assert = require('chai').assert;
 const expect = require('chai').expect;
-const mongoose = require('mongoose');
 
 describe('Testing user model functions', function() {
 
@@ -15,7 +14,6 @@ describe('Testing user model functions', function() {
   });
 
   it('Should add a new user with a hashed password' , function(done) {
-
     User.addUser(testUser, (err, user) => {
         if(err) throw err;
         else {
@@ -26,8 +24,5 @@ describe('Testing user model functions', function() {
       done();
     });
 
-
   });
-
-
-  });
+});
