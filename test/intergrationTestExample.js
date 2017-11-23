@@ -1,5 +1,3 @@
-/*
-
 'use strict';
 
 const chai = require('chai');
@@ -28,4 +26,3 @@ describe('User http routes', function() {
       });
   });
 });
-*/
