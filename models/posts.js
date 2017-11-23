@@ -38,7 +38,5 @@ module.exports.getPostById = (id, callback) => {
 
 // todo : encrypt post
 module.exports.addPost = function(newPost, callback) {
-    newPost.save(callback);
-    });
-  });
+      newPost.save(callback);
 }
