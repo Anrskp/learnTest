@@ -1,4 +1,4 @@
-// execute by 'npm run test' in terminal
+/*
 const assert = require('chai').assert
 const testString = "test";
 const testNumber = 30;
@@ -30,3 +30,4 @@ describe('testing my number', function() {
   });
 
 });
+*/

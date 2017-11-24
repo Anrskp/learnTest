@@ -40,10 +40,10 @@ module.exports.addUser = function(newUser, callback) {
   });
 }
 
-module.exports.deleteUser = function(username, callback) {
-  getUserByUsername(username).remove();
+module.exports.deleteUserByUsername = (username, callback) =>  {
+  const query = {username: username};
+  User.remove(query, callback);
 }
-
 
 module.exports.comparePassword = function(candidatePassword, hash, callback) {
   bcrypt.compare(candidatePassword, hash, (err, isMatch) => {

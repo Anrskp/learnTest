@@ -49,7 +49,7 @@ app.use('/posts', posts);
 // Start Server
 const port = 3000;
 app.listen(port, () => {
-   //console.log('Server startet on port ' + port);
+   console.log('Server startet on port ' + port);
 });
 
-module.exports = app; // for testing
+module.exports = app; // export for testing

@@ -4,8 +4,9 @@ const chai = require('chai');
 const assert = require('chai').assert;
 const expect = require('chai').expect;
 const app = require('../app');
-
 chai.use(require('chai-http'));
+
+// todo : split up into seperate test user/post
 
 let testUser = {
   username: "mockUser",
