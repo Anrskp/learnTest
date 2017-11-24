@@ -1,7 +1,6 @@
 'use strict';
 
 const Post = require('../models/posts');
-
 const app = require('../app');
 const User = require('../models/user');
 const chai = require('chai');
@@ -48,10 +47,13 @@ describe('User model functions', () => {
   it('Should retrive all posts from database' , (done) => {
     Post.getAllPosts((err, posts) => {
       if(err) console.log(err);
-      else console.log(posts);
+      else {
+        console.log(posts.length);
+        expect(posts.length).to.be.at.least(1);
+        assert.typeOf(posts[0], 'Object');
+      }
       done();
     });
   });
-
 
 });
