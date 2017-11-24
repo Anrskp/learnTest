@@ -1,11 +1,13 @@
 'use strict';
 
+const Post = require('../models/posts');
+
+const app = require('../app');
 const User = require('../models/user');
 const chai = require('chai');
 const assert = require('chai').assert;
 const expect = require('chai').expect;
 const mongoose = require('mongoose');
-const app = require('../app');
 mongoose.Promise = require('bluebird');
 
 describe('User model functions', () => {
@@ -15,6 +17,8 @@ describe('User model functions', () => {
     email: "a@valid.email",
     password: "password"
   });
+
+  // USER TESTS
 
   it('Should add a new user with a hashed password' , (done) => {
     User.addUser(testUser, (err, user) => {
@@ -28,6 +32,8 @@ describe('User model functions', () => {
     });
   });
 
+// POSTS TESTS
+
   it('Should delete a user with username "mockUser"' , (done) => {
     User.deleteUserByUsername('mockUser', (err, response) => {
       if(err) console.log(err);
@@ -38,5 +44,14 @@ describe('User model functions', () => {
       done();
     });
   });
+
+  it('Should retrive all posts from database' , (done) => {
+    Post.getAllPosts((err, posts) => {
+      if(err) console.log(err);
+      else console.log(posts);
+      done();
+    });
+  });
+
 
 });
