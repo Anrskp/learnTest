@@ -44,7 +44,6 @@ module.exports.deleteUser = function(username, callback) {
   getUserByUsername(username).remove();
 }
 
-
 module.exports.comparePassword = function(candidatePassword, hash, callback) {
   bcrypt.compare(candidatePassword, hash, (err, isMatch) => {
     if(err) throw err

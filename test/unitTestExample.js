@@ -14,9 +14,11 @@ var testUser = {
 describe('User model tests', function() {
   it('Should add a new user' , function() {
 
+    console.log('asd')
 
-    User.addUser(testUser, err) => {
-      console.log(err)
+    User.addUser(testUser, (err, user) => {
+      if(err) console.log(err);
+      else console.log(user);
     });
 
   });
