@@ -7,6 +7,7 @@ const passport = require('passport');
 const mongoose = require('mongoose');
 const config = require('./config/database')
 const users = require('./routes/users');
+const posts = require('./routes/posts');
 
 const app = express();
 
@@ -20,7 +21,8 @@ mongoose.connect(config.database, {
 
 // On Connection
 mongoose.connection.on('connected', () => {
-  // console.log('Connected to database ' + config.database)
+  //console.log('Connected to database ' + config.database)
+  console.log('Connected to database ' + config.database)
 });
 
 // On Error
@@ -40,14 +42,27 @@ app.use(passport.session());
 require('./config/passport')(passport);
 
 // Set Static Folder
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, './angular-src/dist')));
 
 app.use('/users', users);
+app.use('/posts', posts);
 
 // Start Server
 const port = 3000;
 app.listen(port, () => {
-   console.log('Server startet on port ' + port);
+  console.log('Server startet on port ' + port);
 });
+
+
+
+// Index Route
+app.get('/', (req, res) => {
+  res.send('Invalid Endpoint');
+});
+
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, './angular-src/dist/index.html'));
+});
+
 
 module.exports = app; // for testing
