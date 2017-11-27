@@ -1,24 +1,59 @@
 'use strict';
 
+const Post = require('../models/posts');
+const app = require('../app');
 const User = require('../models/user');
 const chai = require('chai');
 const assert = require('chai').assert;
 const expect = require('chai').expect;
+const mongoose = require('mongoose');
+mongoose.Promise = require('bluebird');
 
-var testUser = {
-  username : "testUserUnit",
-  email : "test@test.test",
-  password : "testUnit"
-};
+describe('User model functions', () => {
 
-describe('User model tests', function() {
-  it('Should add a new user' , function() {
+  var testUser = new User({
+    username: "mockUser",
+    email: "a@valid.email",
+    password: "password"
+  });
 
+  // USER TESTS
 
-    User.addUser(testUser, err) => {
-      console.log(err)
+  it('Should add a new user with a hashed password' , (done) => {
+    User.addUser(testUser, (err, user) => {
+      if(err) console.log(err);
+      else {
+        assert.typeOf(user, 'Object');
+        assert.equal(user.username, "mockUser");
+        expect(user.password).to.not.equal("password");
+      }
+      done();
     });
+  });
 
+// POSTS TESTS
+
+  it('Should delete a user with username "mockUser"' , (done) => {
+    User.deleteUserByUsername('mockUser', (err, response) => {
+      if(err) console.log(err);
+      else {
+        let amountDeleted = response.result.n
+        expect(amountDeleted).to.be.at.least(1);
+      }
+      done();
+    });
+  });
+
+  it('Should retrive all posts from database' , (done) => {
+    Post.getAllPosts((err, posts) => {
+      if(err) console.log(err);
+      else {
+        console.log(posts.length);
+        expect(posts.length).to.be.at.least(1);
+        assert.typeOf(posts[0], 'Object');
+      }
+      done();
+    });
   });
 
 });
