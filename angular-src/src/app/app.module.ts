@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
-//import { HttpModule } from '@angular/http';
-import {HttpClientModule} from '@angular/common/http';
+import { HttpModule } from '@angular/http';
+//import {HttpClientModule} from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import { FormsModule} from '@angular/forms';
@@ -42,7 +42,7 @@ const appRoutes: Routes = [
     FormsModule,
     RouterModule.forRoot(appRoutes),
     FlashMessagesModule.forRoot(),
-    HttpClientModule
+    HttpModule
 
   ],
   providers: [ValidateService,AuthService],

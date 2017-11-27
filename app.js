@@ -53,8 +53,6 @@ app.listen(port, () => {
   console.log('Server startet on port ' + port);
 });
 
-
-
 // Index Route
 app.get('/', (req, res) => {
   res.send('Invalid Endpoint');
@@ -63,6 +61,5 @@ app.get('/', (req, res) => {
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, './angular-src/dist/index.html'));
 });
-
 
 module.exports = app; // for testing

@@ -34,7 +34,7 @@ describe('User http routes', function() {
     .then(function(res) {
       expect(res).to.have.status(200);
       expect(res).to.be.json;
-      assert.equal(res.body.succes, true);
+      assert.equal(res.body.success, true);
     });
   });
 });

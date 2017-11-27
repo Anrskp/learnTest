@@ -13,13 +13,13 @@ router.post('/register', (req, res, next) => {
     password: req.body.password
   });
 
-    User.addUser(newUser, (err, user) => {
-      if(err) {
-        res.json({success: false, msg:'Failed to register user'});
-      } else {
-        res.json({success: true, msg:'User registerd'});
-      }
-    })
+  User.addUser(newUser, (err, user) => {
+    if(err) {
+      res.json({success: false, msg:'Failed to register user'});
+    } else {
+      res.json({success: true, msg:'User registered'});
+    }
+  });
 });
 
 // Authenticate
@@ -35,30 +35,23 @@ router.post('/authenticate', (req, res, next) => {
 
     User.comparePassword(password, user.password, (err, isMatch) => {
       if(err) throw err;
-      if(!user) {
-        return res.json({success: false, msg: 'User not found'});
+      if(isMatch) {
+        const token = jwt.sign({data: user}, config.secret, {
+          expiresIn: 7200 // 2 hours
+        });
+
+        res.json({
+          succes: true,
+          token: 'JWT ' + token,
+          user: {
+            id: user._id,
+            email: user.email,
+            username: user.username
+          }
+        });
+      } else {
+        return res.json({succes: false, msg: 'Wrong password'});
       }
-
-      User.comparePassword(password, user.password, (err, isMatch) => {
-        if(err) throw err;
-        if(isMatch) {
-          const token = jwt.sign({data: user}, config.secret, {
-            expiresIn: 7200 // 2 hours
-          });
-
-          res.json({
-            success: true,
-            token: 'JWT ' + token,
-            user: {
-              id: user._id,
-              email: user.email,
-              username: user.username
-            }
-          });
-        } else {
-          return res.json({success: false, msg: 'Wrong password'});
-        }
-      });
     });
   });
 });
