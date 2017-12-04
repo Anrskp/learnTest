@@ -8,8 +8,11 @@ const mongoose = require('mongoose');
 const config = require('./config/database')
 const users = require('./routes/users');
 const posts = require('./routes/posts');
+const jwt = require('jsonwebtoken');
 
 const app = express();
+var server = require('http').createServer(app);
+var io = require('socket.io')(server);
 
 // Promise libary
 mongoose.Promise = require('bluebird');
@@ -49,7 +52,7 @@ app.use('/posts', posts);
 
 // Start Server
 const port = 3000;
-app.listen(port, () => {
+server.listen(port, () => {
   console.log('Server startet on port ' + port);
 });
 
@@ -62,4 +65,31 @@ app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, './angular-src/dist/index.html'));
 });
 
-module.exports = app; // for testing
+// IO Connection
+io.use(function(socket, next){
+  // Authentication
+  if (socket.handshake.query && socket.handshake.query.token){
+    // todo : token has "JWT " infront of it - dosent work withit here, why elsewhere?
+    jwt.verify(socket.handshake.query.token.substring(4), 'My Secret', function(err, decoded) {
+      if(err) return next(new Error('Authentication error'));
+      socket.decoded = decoded;
+      next();
+    });
+  }
+  next(new Error('Authentication error'));
+})
+
+// Connection now authenticated to receive further events
+.on('connection', function(socket) {
+  console.log('new socket connection established')
+
+  // Broadcast new message upon reciving one
+  // todo : save msg to database send as object (user, msg, date)
+  socket.on('send message', function (data) {
+    io.emit('receive message', {text : data});
+  });
+});
+
+
+
+module.exports = app; // export for testing

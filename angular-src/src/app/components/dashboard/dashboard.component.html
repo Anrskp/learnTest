@@ -1,2 +1,24 @@
 <h2 class="page-header"> Dashboard </h2>
 <p>Welcome to your Dashboard</p>
+
+
+<div>
+  <ul>
+    <li *ngFor="let msg of messages">
+      {{ msg }}
+    </li>
+  </ul>
+
+</div>
+
+
+<form (submit)="onRegisterSubmit()">
+
+  <div class="form-group">
+    <label>msg</label>
+    <input type="text" [(ngModel)]="msg" name="msg" class="form-control" >
+  </div>
+
+
+  <input type="submit" class="btn btn-primary" value="Submit">
+</form>

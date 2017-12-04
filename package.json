@@ -18,7 +18,8 @@
     "passport-jwt": "*",
     "mocha": "*",
     "chai": "*",
-    "chai-http": "*"
+    "chai-http": "*",
+    "socket.io": "^2.0.3"
   },
   "author": "Anders Kaae",
   "license": "ISC"
