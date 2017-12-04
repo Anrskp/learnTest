@@ -22,5 +22,8 @@
     "socket.io": "^2.0.3"
   },
   "author": "Anders Kaae",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "@angular/cli": "^1.5.5"
+  }
 }
