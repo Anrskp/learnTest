@@ -15,11 +15,11 @@ const postSchema = mongoose.Schema({
     type: Date,
     default: Date.now,
     required: true
-  },
+  }/*,
   lastEdit : {
     type: Date,
     required: false
-  }
+  }*/
 });
 
 const Post = module.exports = mongoose.model('Post', postSchema);
@@ -43,6 +43,3 @@ module.exports.getAllPosts = (callback) => {
 module.exports.addPost = (newPost, callback) => {
   newPost.save(callback);
 }
-
-
-// todo : delete, edit post

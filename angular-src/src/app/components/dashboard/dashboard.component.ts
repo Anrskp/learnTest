@@ -19,29 +19,39 @@ export class DashboardComponent  implements OnInit, OnDestroy {
   constructor(private socketService: SocketService, private postService: PostService) {}
 
   onRegisterSubmit(){
-    this.socketService.sendMessage(this.msg);
+    let user = JSON.parse(localStorage.getItem('user'));
+
+    let newPost = {
+      username: user.username,
+      post: this.msg,
+      date: new Date()
+    }
+    this.socketService.sendMessage(newPost);
   }
 
 
   ngOnInit() {
-  this.connection = this.postService.getAllPosts().subscribe(posts => {
-      this.messages = posts.posts;
-      //console.log(posts);
+  this.postService.getAllPosts().subscribe(posts => {
+      posts.posts.forEach(e => this.messages.push(e));
     },
     err => {
       console.log(err);
       return false;
     });
 
-    // this.connection = this.socketService.getMessages().subscribe(message => {
-    //   console.log(message['text'])
-    //   this.messages.push(message['text']);
-    //   console.log(this.messages);
-    // })
+
+     this.connection = this.socketService.getMessages().subscribe(message => {
+       console.log(message)
+       this.messages.push(message);
+      })
 }
 
   ngOnDestroy() {
     this.connection.unsubscribe();
+  }
+
+  loadUser() {
+
   }
 
 }

@@ -2,13 +2,13 @@
 <p>Welcome to your Dashboard</p>
 
 
-<div>
-  <ul>
-    <li *ngFor="let msg of messages">
-      {{ msg.username }}  {{ msg.post }}   {{ msg.date }}
-    </li>
-  </ul>
-
+<div *ngFor="let msg of messages">
+  <div style ="background-color: lightblue;">
+    <p> {{ msg.username }} </p>
+    <p> <b> {{ msg.post }} </b> </p>
+    <p> {{ msg.date }} </p>
+  </div>
+  <br>
 </div>
 
 

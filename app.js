@@ -9,6 +9,7 @@ const config = require('./config/database')
 const users = require('./routes/users');
 const posts = require('./routes/posts');
 const jwt = require('jsonwebtoken');
+const Post = require('./models/posts');
 
 const app = express();
 var server = require('http').createServer(app);
@@ -86,7 +87,17 @@ io.use(function(socket, next){
   // Broadcast new message upon reciving one
   // todo : save msg to database send as object (user, msg, date)
   socket.on('send message', function (data) {
-    io.emit('receive message', {text : data});
+    let newPost = new Post ({
+      username: data.username,
+      post: data.post,
+      date: data.date,
+    });
+
+    Post.addPost(newPost, (err, post) => {
+      if(err) throw err;
+    });
+
+    io.emit('receive message', newPost);
   });
 });
 

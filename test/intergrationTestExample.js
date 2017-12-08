@@ -21,8 +21,8 @@ let testUser = {
 let testPost = {
   username: "mockUser",
   post: "mockPost",
-  date: new Date(),
-  lastEdit: new Date()
+  date: new Date()
+  //lastEdit: new Date()
 };
 
 describe('User http routes', function() {
