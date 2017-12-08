@@ -40,6 +40,8 @@ getProfile(){
 }
 
 
+
+
 storeUserData(token, user){
   localStorage.setItem('id_token', token);
   localStorage.setItem('user', JSON.stringify(user));

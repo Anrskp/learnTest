@@ -7,6 +7,7 @@ const config = require('../config/database');
 
 // new post
 router.post('/post', (req, res, next) => {
+
   let newPost = new Post ({
     username: req.body.username,
     post: req.body.post,
@@ -24,4 +25,18 @@ router.post('/post', (req, res, next) => {
 
 });
 
+//getAllPosts
+router.get('/getAllPosts', passport.authenticate('jwt', {session: false}),(req, res, next) => {
+  Post.getAllPosts((err, posts) => {
+    if (err)
+    {
+      res.json({succes: false, msg:'Failed to get posts'});
+    }
+    else
+    {
+      res.json({succes: true, posts});
+      //res.json(posts);
+    };
+  });
+});
 module.exports = router;
