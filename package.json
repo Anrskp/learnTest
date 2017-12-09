@@ -19,7 +19,8 @@
     "mocha": "*",
     "chai": "*",
     "chai-http": "*",
-    "socket.io": "^2.0.3"
+    "socket.io": "^2.0.3",
+    "crypto-js": "*"
   },
   "author": "Anders Kaae",
   "license": "ISC",

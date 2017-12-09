@@ -32,7 +32,7 @@ export class DashboardComponent  implements OnInit, OnDestroy {
 
   ngOnInit() {
   this.postService.getAllPosts().subscribe(posts => {
-      posts.posts.forEach(e => this.messages.push(e));
+      posts.posts.forEach(e => this.messages.unshift(e));
     },
     err => {
       console.log(err);
@@ -41,8 +41,7 @@ export class DashboardComponent  implements OnInit, OnDestroy {
 
 
      this.connection = this.socketService.getMessages().subscribe(message => {
-       console.log(message)
-       this.messages.push(message);
+       this.messages.unshift(message);
       })
 }
 

@@ -10,6 +10,7 @@ const users = require('./routes/users');
 const posts = require('./routes/posts');
 const jwt = require('jsonwebtoken');
 const Post = require('./models/posts');
+const CryptoJS = require("crypto-js");
 
 const app = express();
 var server = require('http').createServer(app);
@@ -84,20 +85,24 @@ io.use(function(socket, next){
 .on('connection', function(socket) {
   console.log('new socket connection established')
 
-  // Broadcast new message upon reciving one
-  // todo : save msg to database send as object (user, msg, date)
+  // On reciving a new message
   socket.on('send message', function (data) {
+    let encryptedPost = CryptoJS.AES.encrypt(data.post, 'My secret');
+
     let newPost = new Post ({
       username: data.username,
       post: data.post,
       date: data.date,
     });
 
+    // Broadcast post to clients
+    io.emit('receive message', newPost);
+    // Encrypt post
+    newPost.post = encryptedPost
+    // Save post in db.
     Post.addPost(newPost, (err, post) => {
       if(err) throw err;
     });
-
-    io.emit('receive message', newPost);
   });
 });
 

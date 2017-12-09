@@ -4,6 +4,7 @@ const passport = require('passport');
 const jwt = require('jsonwebtoken');
 const Post = require('../models/posts');
 const config = require('../config/database');
+const CryptoJS = require("crypto-js");
 
 // new post
 router.post('/post', (req, res, next) => {
@@ -34,9 +35,14 @@ router.get('/getAllPosts', passport.authenticate('jwt', {session: false}),(req, 
     }
     else
     {
+      posts.forEach(e => {
+        var bytes  = CryptoJS.AES.decrypt(e.post.toString(), 'My secret');
+        var decryptedData = bytes.toString(CryptoJS.enc.Utf8);
+        e.post = decryptedData;
+      })
       res.json({succes: true, posts});
-      //res.json(posts);
-    };
+      };
   });
 });
+
 module.exports = router;
