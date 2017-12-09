@@ -13,7 +13,7 @@ const Post = require('./models/posts');
 const CryptoJS = require("crypto-js");
 
 const app = express();
-var server = require('http').createServer(app);
+var server = require('https').createServer(app);
 var io = require('socket.io')(server);
 
 // Promise libary
