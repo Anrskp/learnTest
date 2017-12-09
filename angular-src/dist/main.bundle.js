@@ -835,11 +835,12 @@ var PostService = (function () {
         this.http = http;
     }
     PostService.prototype.getAllPosts = function () {
+        var ep = location.origin;
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["Headers"]();
         this.loadToken();
         headers.append('Authorization', this.authToken);
         headers.append('Content-Type', 'application/json');
-        return this.http.get('http://localhost:3000/posts/getAllPosts', { headers: headers })
+        return this.http.get(ep + 'posts/getAllPosts', { headers: headers })
             .map(function (res) { return res.json(); });
     };
     PostService.prototype.loadToken = function () {

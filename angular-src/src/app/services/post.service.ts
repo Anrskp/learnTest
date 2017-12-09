@@ -8,11 +8,12 @@ export class PostService {
   constructor(private http:Http) { }
 
   getAllPosts(){
+    let ep = location.origin;
     let headers = new Headers();
     this.loadToken();
     headers.append('Authorization', this.authToken);
     headers.append('Content-Type', 'application/json');
-    return this.http.get('http://localhost:3000/posts/getAllPosts',{headers: headers})
+    return this.http.get(ep + 'posts/getAllPosts',{headers: headers})
       .map(res => res.json());
   }
 
