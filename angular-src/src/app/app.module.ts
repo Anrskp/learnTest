@@ -48,6 +48,6 @@ const appRoutes: Routes = [
 
   ],
   providers: [ValidateService,AuthService, AuthGuard,PostService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent] 
 })
 export class AppModule { }

@@ -57,14 +57,21 @@ if(data.success)
   this.flashMessage.show('You are now registered and can log in', {cssClass:'alert-success', timeout:3000});
   this.router.navigate(['/login']);
 }
-else
-{
+else if (data.msg === "username already in use") {
+  this.flashMessage.show('Username already in use', {cssClass:'alert-danger', timeout:3000});
+  this.router.navigate(['/register']);
+}
+
+else if (data.msg === "email already in use") {
+  this.flashMessage.show('Email already in use', {cssClass:'alert-danger', timeout:3000});
+  this.router.navigate(['/register']);
+}
+
+else {
   this.flashMessage.show('Something went wrong', {cssClass:'alert-danger', timeout:3000});
-//  console.log(data);
   this.router.navigate(['/register']);
 }
 })
-
 }
 
 
