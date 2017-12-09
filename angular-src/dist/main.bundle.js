@@ -870,7 +870,7 @@ var PostService = (function () {
 var SocketService = (function () {
     function SocketService() {
         this.token = localStorage.getItem('id_token');
-        this.socket = __WEBPACK_IMPORTED_MODULE_1_socket_io_client__('http://localhost:3000', {
+        this.socket = __WEBPACK_IMPORTED_MODULE_1_socket_io_client__(location.origin, {
             query: { token: this.token }
         });
     }
