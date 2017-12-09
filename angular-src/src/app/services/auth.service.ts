@@ -39,9 +39,6 @@ getProfile(){
     .map(res => res.json());
 }
 
-
-
-
 storeUserData(token, user){
   localStorage.setItem('id_token', token);
   localStorage.setItem('user', JSON.stringify(user));
@@ -69,7 +66,7 @@ prepEndpoint(ep){
     if(this.isDev){
       return ep;
     } else {
-      return 'https://localhost:3000/'+ep;
+      return ep;
     }
   }
 
