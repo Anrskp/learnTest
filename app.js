@@ -47,7 +47,7 @@ app.use(passport.session());
 require('./config/passport')(passport);
 
 // Set Static Folder
-app.use(express.static(path.join(__dirname, './angular-src/dist')));
+app.use(express.static(path.join(__dirname, 'angular-src/dist')));
 
 app.use('/users', users);
 app.use('/posts', posts);
@@ -64,7 +64,7 @@ res.send('Invalid Endpoint');
 });
 
 app.get('*', (req, res) => {
-res.sendFile(path.join(__dirname, './angular-src/dist/index.html'));
+res.sendFile(path.join(__dirname, 'angular-src/dist/index.html'));
 });
 
 // IO Connection
