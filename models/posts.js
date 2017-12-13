@@ -15,17 +15,12 @@ const postSchema = mongoose.Schema({
     type: Date,
     default: Date.now,
     required: true
-  }/*,
-  lastEdit : {
-    type: Date,
-    required: false
-  }*/
+  }
 });
 
 const Post = module.exports = mongoose.model('Post', postSchema);
 
 // Methods
-// todo : decrypt post(s)
 module.exports.getPostByUsername = (username, callback) => {
   const query = {username: username};
   Post.findOne(query, callback);
@@ -39,7 +34,11 @@ module.exports.getAllPosts = (callback) => {
   Post.find({}, callback);
 }
 
-// todo : encrypt post
 module.exports.addPost = (newPost, callback) => {
   newPost.save(callback);
+}
+
+module.exports.deletePostById = (postID, callback) => {
+  const query = {_id: postID};
+  Post.remove(query, callback);
 }
