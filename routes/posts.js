@@ -16,6 +16,9 @@ router.post('/post', (req, res, next) => {
     lastEdit: req.body.lastEdit
   });
 
+  let encryptedPost = CryptoJS.AES.encrypt(JSON.stringify(newPost.post), 'My secret');
+  newPost.post = encryptedPost;
+
   Post.addPost(newPost, (err, post) => {
     if(err) {
       res.json({succes: false, msg:'Failed to register post'});
@@ -40,7 +43,7 @@ router.get('/getAllPosts', passport.authenticate('jwt', {session: false}),(req, 
         var decryptedData = bytes.toString(CryptoJS.enc.Utf8);
         e.post = decryptedData;
       })
-      res.json({succes: true, posts});
+      res.json({success: true, posts});
       };
   });
 });

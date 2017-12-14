@@ -86,7 +86,7 @@ io.use(function(socket, next){
 
   // On reciving a new message
   socket.on('send message', function (data) {
-    let encryptedPost = CryptoJS.AES.encrypt(data.post, 'My secret');
+    let encryptedPost = CryptoJS.AES.encrypt(JSON.stringify(data.post), 'My secret');
 
     let newPost = new Post ({
       username: data.username,

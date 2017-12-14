@@ -58,6 +58,16 @@ describe('Unit testing the user model', () => {
     })
   });
 
+  it('Should compare passwords and return false' , (done) => {
+    User.comparePassword("invalidPassword", hashedPassword, (err, isMatch) => {
+      if (err) console.log(err);
+      else {
+        assert.equal(isMatch, false);
+      }
+      done();
+    })
+  });
+
   // Delete user
   it('Should delete a user with username "mockUser"' , (done) => {
     User.deleteUserByUsername('mockUser', (err, response) => {
@@ -111,6 +121,18 @@ describe('Unit testing post model', () => {
     })
   });
 
+  // Delete post
+  it('Should delete a post by ID from DB' , (done) => {
+    Post.deletePostById(postID, (err, res) => {
+      if (err) console.log(err);
+      else {
+        let amountDeleted = res.result.n;
+        assert.equal(amountDeleted, 1);
+      }
+      done();
+    })
+  });
+
   // Get all posts
   it('Should retrive all posts from database' , (done) => {
     Post.getAllPosts((err, posts) => {
@@ -123,15 +145,4 @@ describe('Unit testing post model', () => {
     });
   });
 
-  // Delete post
-  it('Should delete a post by ID from DB' , (done) => {
-    Post.deletePostById(postID, (err, res) => {
-      if (err) console.log(err);
-      else {
-        let amountDeleted = res.result.n;
-        assert.equal(amountDeleted, 1);
-      }
-      done();
-    })
-  });
 });
