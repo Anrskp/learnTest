@@ -71,7 +71,7 @@ io.use(function(socket, next){
   // Authentication
   if (socket.handshake.query && socket.handshake.query.token){
     // todo : token has "JWT " infront of it - dosent work withit here, why elsewhere?
-    jwt.verify(socket.handshake.query.token.substring(4), 'My Secret', function(err, decoded) {
+    jwt.verify(socket.handshake.query.token.substring(4), config.secret, function(err, decoded) {
       if(err) return next(new Error('Authentication error'));
       socket.decoded = decoded;
       next();
@@ -86,7 +86,7 @@ io.use(function(socket, next){
 
   // On reciving a new message
   socket.on('send message', function (data) {
-    let encryptedPost = CryptoJS.AES.encrypt(JSON.stringify(data.post), 'My secret');
+    let encryptedPost = CryptoJS.AES.encrypt(JSON.stringify(data.post), config.secret);
 
     let newPost = new Post ({
       username: data.username,

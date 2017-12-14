@@ -13,27 +13,39 @@ router.post('/register', (req, res, next) => {
     password: req.body.password
   });
 
-  User.getUserByUsername(req.body.username, (err, user) => {
-    if (err) throw err
-    if (user != null) {
-      res.json({success: false, msg: 'username already in use'})
-    } else {
-      User.getUserByEmail(req.body.email, (err, email) => {
-        if (err) throw err
-        if (email != null) {
-          res.json({success: false, msg: 'email already in use'})
-        } else {
-          User.addUser(newUser, (err, user) => {
-            if(err) {
-              res.json({success: false, msg:'Failed to register user'});
-            } else {
-              res.json({success: true, msg:'User registered'});
-            }
-          });
-        }
-      })
+  let registerKey = req.body.registerKey;
+
+  User.comparePassword(registerKey, config.registerKey, (err, isMatch) => {
+    if(err) console.log(err)
+    else {
+      if(!isMatch) {
+        res.json({success: false, msg: 'Invalid registration key'})
+      } else {
+        User.getUserByUsername(req.body.username, (err, user) => {
+          if (err) throw err
+          if (user != null) {
+            res.json({success: false, msg: 'username already in use'})
+          } else {
+            User.getUserByEmail(req.body.email, (err, email) => {
+              if (err) throw err
+              if (email != null) {
+                res.json({success: false, msg: 'email already in use'})
+              } else {
+                User.addUser(newUser, (err, user) => {
+                  if(err) {
+                    res.json({success: false, msg:'Failed to register user'});
+                  } else {
+                    res.json({success: true, msg:'User registered'});
+                  }
+                });
+              }
+            })
+          }
+        })
+      }
     }
   })
+
 });
 
 // Authenticate

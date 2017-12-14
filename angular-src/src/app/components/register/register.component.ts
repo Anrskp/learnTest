@@ -15,6 +15,7 @@ export class RegisterComponent implements OnInit {
 username: String;
 email: String;
 password: String;
+registerKey: String;
 
   constructor(
     private validateService: ValidateService,
@@ -30,7 +31,8 @@ password: String;
   const user = {
     email: this.email,
     username: this.username,
-    password: this.password
+    password: this.password,
+    registerKey: this.registerKey
     }
 
   //Required Fields
@@ -65,6 +67,12 @@ else if (data.msg === "username already in use") {
 else if (data.msg === "email already in use") {
   this.flashMessage.show('Email already in use', {cssClass:'alert-danger', timeout:3000});
   this.router.navigate(['/register']);
+}
+
+else if (data.msg === 'Invalid registration key') {
+  this.flashMessage.show('Invalid registration key', {cssClass:'alert-danger', timeout:3000});
+  this.router.navigate(['/register']);
+
 }
 
 else {
